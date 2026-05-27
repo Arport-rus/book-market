@@ -119,15 +119,15 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
 
     </section>
 
-        <!-- ==================== НОВАЯ СЕКЦИЯ "О НАС" ==================== -->
+    <!-- ==================== НОВАЯ СЕКЦИЯ "О НАС" ==================== -->
     <section class="px-36 py-24 bg-[#FFFBF2]">
-      <div class="max-w-6xl mx-auto">   <!-- немного увеличил max-w для лучшего пространства -->
+      <div class="max-w-6xl mx-auto">
         <h2 class="text-[70px] pb-6 font-black text-stone-900 mb-12" style="font-family: 'MontserratAlternates-SemiBold', sans-serif;">
           О нас
         </h2>
 
         <div class="grid grid-cols-[2fr_1fr] gap-16 items-start">
-          <!-- Left: Text - теперь 2/3 ширины -->
+          <!-- Left: Text -->
           <div class="space-y-8 text-[17px] leading-relaxed text-stone-700" style="font-family: 'Montserrat', sans-serif;font-size: 24px;">
             <p>
               В нашем каталоге представлено более 60 000 товаров от таких издательств, как «Эксмо», «АСТ», «Манн, Иванов и Фербер», а также брендов «БОМБОРА», «Corpus», «Mainstream», «Редакция Елены Шубиной», «Вилли-Винки», «Fanzon», «Комильфо», «Канц-Эксмо» и многих других.
@@ -156,22 +156,24 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
             </div>
           </div>
 
-          <!-- Right: Images - 1/3 ширины -->
-          <div class="relative h-[620px]">
-            <!-- Top circle - Girl -->
-            <div class="absolute left-130 bottom-90 w-[418px] h-[418px] rounded-full overflow-hidden border-8 border-white shadow-2xl">
-              <img src="/" alt="Девочка с книгой" class="w-full h-full object-cover">
+          <!-- Right: Images -->
+          <div class="relative h-[720px]">
+
+            <!-- Самый большой круг - Книжные полки -->
+            <div class="absolute left-[100px] bottom-[100px] w-[520px] h-[520px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-30">
+              <img src="https://images.unsplash.com/photo-1481627834876-b7833a8b0f6d" alt="Книжные полки" class="w-full h-full object-cover ">
             </div>
 
-            <!-- Bottom circle - Bookshelves -->
-            <div class="absolute left-25 bottom-0 w-[544px] h-[544px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-20">
-              <img src="https://images.unsplash.com/photo-1481627834876-b7833a8b0f6d" alt="Книжные полки" class="w-full h-full object-cover">
+            <!-- Средний круг - Девочка с книгой -->
+            <div class="absolute left-[500px] bottom-[450px] w-[419px] h-[419px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-20">
+              <img src="https://images.unsplash.com/photo-1594824476967-9c9c3f8f0f0f" alt="Девочка с книгой" class="w-full h-full object-cover " >
             </div>
 
-            <!-- Small circle - Woman -->
-            <div class="absolute left-130 top-100 w-[410px] h-[410px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-10">
+            <!-- Маленький круг - Женщина -->
+            <div class="absolute left-[600px] bottom-32 w-[260px] h-[260px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-10">
               <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Продавец в магазине" class="w-full h-full object-cover">
             </div>
+
           </div>
         </div>
       </div>
