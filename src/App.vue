@@ -13,8 +13,7 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
   <div class="min-h-screen font-sans" style="background-color: #FFFBF2; font-family: 'Georgia', serif;">
 
     <!-- Navbar -->
-    <nav class="flex items-center justify-between px-24 py-5" style=" background-color: #FFFBF2;">
-
+    <nav class="flex items-center justify-between px-36 py-5 bg-[#FFFBF2] border-b border-stone-200">
       <span class="font-bold text-sm tracking-wide text-stone-800" style="font-family: 'Georgia', serif;">
         Книжный уголок
       </span>
@@ -44,11 +43,9 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
         </button>
       </div>
     </nav>
-     <div class="px-24"></div>
-      <hr class="border bg-stone-950">
-    </div>
+
     <!-- Hero -->
-    <section class="flex px-24 pt-16 pb-20 relative overflow-visible" style="min-height: 80vh;">
+    <section class="flex px-36 pt-16 pb-20 relative overflow-visible" style="min-height: 80vh;">
 
       <!-- Left content -->
       <div class="flex-1 max-w-sm z-10 mt-3.5">
