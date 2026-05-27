@@ -44,7 +44,7 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
         </button>
       </div>
     </nav>
-     <div class="px-24">
+     <div class="px-24"></div>
       <hr class="border bg-stone-950">
     </div>
     <!-- Hero -->
