@@ -1,4 +1,7 @@
 <script setup>
+import bibliot from '@/assets/bibli.jpg'
+import pinkG from '@/assets/pink-girl.jpg'
+import womanImage from '@/assets/portret-girl.jpg'
 const categories = [
   { label: 'Детская литература', color: 'bg-[#AEB9D7]', rotate: 13, width: 80, height: 500, left: 0, top: 0, shadow: '16px 24px 40px rgba(0,0,0,0.25)' },
   { label: 'Художественная литература', color: 'bg-[#FFE8E8]', rotate: 3, width: 94, height: 709, left: 0, top: 0, shadow: '20px 30px 50px rgba(0,0,0,0.28)', },
@@ -7,6 +10,9 @@ const categories = [
 ]
 
 const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Распродажа', 'Контакты']
+
+
+
 </script>
 
 <template>
@@ -146,11 +152,11 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
             </p>
 
             <!-- Buttons -->
-            <div class="flex gap-4 pt-6">
-              <button class="px-8 py-3.5 bg-[#FFEBE8] hover:bg-pink-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif;">
+            <div class="flex gap-4 pt-10">
+              <button class="px-8 py-3.5 bg-[#FFEBE8] hover:bg-pink-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif;width:245px;font-size:20px;font-weight: 500; ">
                 Контакты
               </button>
-              <button class="px-8 py-3.5 bg-[#BACCE2] hover:bg-blue-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif;">
+              <button class="px-8 py-3.5 bg-[#BACCE2] hover:bg-blue-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif; width: 245px; font-size:20px; font-weight: 500;">
                 Распродажа
               </button>
             </div>
@@ -160,18 +166,18 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
           <div class="relative h-[720px]">
 
             <!-- Самый большой круг - Книжные полки -->
-            <div class="absolute left-[100px] bottom-[100px] w-[520px] h-[520px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-30">
-              <img src="https://images.unsplash.com/photo-1481627834876-b7833a8b0f6d" alt="Книжные полки" class="w-full h-full object-cover ">
+            <div class="absolute left-[100px] bottom-[100px] w-[520px] h-[520px] rounded-full overflow-hidden  shadow-2xl z-30">
+              <img :src="bibliot" alt="Книжные полки" class="w-full h-full object-cover ">
             </div>
 
             <!-- Средний круг - Девочка с книгой -->
-            <div class="absolute left-[500px] bottom-[450px] w-[419px] h-[419px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-20">
-              <img src="https://images.unsplash.com/photo-1594824476967-9c9c3f8f0f0f" alt="Девочка с книгой" class="w-full h-full object-cover " >
+            <div class="absolute left-[500px] bottom-[450px] w-[419px] h-[419px] rounded-full overflow-hidden  shadow-2xl z-20">
+              <img :src="pinkG" alt="Девочка с книгой" class="w-full h-full object-cover " >
             </div>
 
             <!-- Маленький круг - Женщина -->
-            <div class="absolute left-[600px] bottom-32 w-[260px] h-[260px] rounded-full overflow-hidden border-8 border-white shadow-2xl z-10">
-              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Продавец в магазине" class="w-full h-full object-cover">
+            <div class="absolute left-[500px] top-[380px] w-[410px] h-[410px] rounded-full overflow-hidden  shadow-2xl z-10">
+              <img :src="womanImage" alt="Продавец в магазине" class="w-full h-full object-cover">
             </div>
 
           </div>
