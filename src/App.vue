@@ -1,7 +1,11 @@
 <script setup>
+import { ref } from 'vue'
 import bibliot from '@/assets/bibli.jpg'
 import pinkG from '@/assets/pink-girl.jpg'
 import womanImage from '@/assets/portret-girl.jpg'
+import smesharik from '@/assets/smeshariki.png' 
+
+
 const categories = [
   { label: 'Детская литература', color: 'bg-[#AEB9D7]', rotate: 13, width: 80, height: 500, left: 0, top: 0, shadow: '16px 24px 40px rgba(0,0,0,0.25)' },
   { label: 'Художественная литература', color: 'bg-[#FFE8E8]', rotate: 3, width: 94, height: 709, left: 0, top: 0, shadow: '20px 30px 50px rgba(0,0,0,0.28)', },
@@ -11,8 +15,25 @@ const categories = [
 
 const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Распродажа', 'Контакты']
 
+const books=[{
+  img: smesharik,
+  description: `- Миллионы фанатов по всему миру,\n- более 600 отснятых серий,\n- 6 спин-оффов и 3 полнометражных фильма.
+  \n\nВсе это о них, о Смешариках, на которых успело вырасти несколько поколений детей.\nА ведь на заре 2000-х, когда все 
+  только начиналось, никто и подумать не мог, что двум парням — Илье Попову и Салавату Шайхинурову — удастся невозможное: 
+  с нуля, без опыта в мультипликации, создать первый в России анимационный сериал, который обойдет по популярности зарубежные франшизы.
+  \nЭта книга — искренняя история о том, как рождалась, росла, находилась на грани краха и снова набирала силу Вселенная Смешариков. 
+  Написанная свидетелем событий, сценарным редактором проекта Марией Корниловой, книга рассказывает о том, что долгое время оставалось 
+  за кадром:\n\n- почему на старте никто не верил в успех проекта;\n- какими были бы Совунья, Нюша, Лосяш, Пин и Ежик, сложись все немного иначе;
+  \n- кто такие Духи Ромашковой долины и почему с ними не стоит ссориться.`
 
-
+},]
+const currentSlide = ref(0);
+function prevSlide() {
+  currentSlide.value = currentSlide.value > 0 ? currentSlide.value - 1 : books.length - 1
+}
+function nextSlide() {
+  currentSlide.value = currentSlide.value < books.length - 1 ? currentSlide.value + 1 : 0
+}
 </script>
 
 <template>
@@ -113,7 +134,7 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
             </svg>
           </div>
 
-          <!-- Подпись -->
+          
           <span
             class="text-stone-700 text-xs font-medium select-none"
             style="writing-mode: vertical-rl; transform: rotate(180deg); font-family: 'Montserrat', sans-serif;font-size: 24px; letter-spacing: 0.15em;"
@@ -125,14 +146,14 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
 
     </section>
 
-    <!-- ==================== НОВАЯ СЕКЦИЯ "О НАС" ==================== -->
+    <!-- section about us -->
     <section class="px-36 py-24 bg-[#FFFBF2]">
-      <div class="max-w-6xl mx-auto">
+      
         <h2 class="text-[70px] pb-6 font-black text-stone-900 mb-12" style="font-family: 'MontserratAlternates-SemiBold', sans-serif;">
           О нас
         </h2>
 
-        <div class="grid grid-cols-[2fr_1fr] gap-16 items-start">
+        <div class="grid grid-cols-[1fr_1fr] gap-16 items-start">
           <!-- Left: Text -->
           <div class="space-y-8 text-[17px] leading-relaxed text-stone-700" style="font-family: 'Montserrat', sans-serif;font-size: 24px;">
             <p>
@@ -182,9 +203,39 @@ const navLinks = ['О нас', 'Каталог', 'Бестселлеры', 'Ра
 
           </div>
         </div>
-      </div>
+      
     </section>
+    <section class="mt-[180px] px-36 text-stone-900">
+  <h1 style="font-family: 'MontserratAlternates-SemiBold', sans-serif; font-size: 70px; font-weight: 600;">
+    Бестселлеры
+  </h1>
 
+  <div class="grid grid-cols-2 gap-0 mt-10">
+    <!-- Картинка -->
+    <div class="p-5 pl-1">
+      <img class="rounded-3xl" :src="books[currentSlide].img" alt="книга">
+    </div>
+
+    <!-- Текст -->
+    <div class="text-[24px] font-light flex flex-col justify-center" style="font-family: 'Montserrat', sans-serif;">
+      <p class="text-balance whitespace-pre-line">{{ books[currentSlide].description }}</p>
+    </div>
+  </div>
+
+  <!-- Точки -->
+  <div class="flex items-center justify-center gap-3 mt-10">
+    <button @click="prevSlide" class="text-stone-400 hover:text-stone-800 text-2xl">‹</button>
+    <span
+      v-for="(book, i) in books"
+      :key="i"
+      @click="currentSlide = i"
+      class="w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300"
+      :class="i === currentSlide ? 'bg-stone-800' : 'bg-stone-300'"
+    />
+    <button @click="nextSlide" class="text-stone-400 hover:text-stone-800 text-2xl">›</button>
+  </div>
+</section>
+    
   </div>
 </template>
 
