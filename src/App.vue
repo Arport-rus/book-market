@@ -3,7 +3,9 @@ import TheNavbar from '@/components/TheNavbar.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import AboutSection from '@/components/AboutSection.vue'
 import BestsellersSection from '@/components/BestsellersSection.vue'
-
+import SaleSection from './components/SaleSection.vue';
+import ContactsSection from '@/components/ContactsSection.vue'
+import FooterSection from '@/components/FooterSection.vue'
 
 </script>
 
@@ -13,8 +15,9 @@ import BestsellersSection from '@/components/BestsellersSection.vue'
     <HeroSection />
     <AboutSection />
     <BestsellersSection />
-   
-
+    <SaleSection/>
+    <ContactsSection />
+    <FooterSection />
   </div>
 </template>
 

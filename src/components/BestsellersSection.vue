@@ -12,7 +12,7 @@ function nextSlide() {
 }
 </script>
 <template>
- <section class="mt-[180px] px-36 text-stone-900">
+ <section id="bestsellers" class="mt-[180px] px-36 text-stone-900">
   <h1 style="font-family: 'MontserratAlternates-SemiBold', sans-serif; font-size: 70px; font-weight: 600;">
     Бестселлеры
   </h1>
@@ -30,16 +30,14 @@ function nextSlide() {
   </div>
 
   <!-- Точки -->
-  <div class="flex items-center justify-center gap-3 mt-10">
-    <button @click="prevSlide" class="text-stone-400 hover:text-stone-800 text-2xl">‹</button>
-    <span
-      v-for="(book, i) in books"
-      :key="i"
-      @click="currentSlide = i"
-      class="w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300"
-      :class="i === currentSlide ? 'bg-stone-800' : 'bg-stone-300'"
-    />
-    <button @click="nextSlide" class="text-stone-400 hover:text-stone-800 text-2xl">›</button>
-  </div>
+  <div class="flex justify-center gap-3 mt-10">
+  <span
+    v-for="(book, i) in books"
+    :key="i"
+    @click="currentSlide = i"
+    class="w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300"
+    :class="i === currentSlide ? 'bg-stone-800' : 'bg-stone-300'"
+  />
+</div>
 </section>
 </template>

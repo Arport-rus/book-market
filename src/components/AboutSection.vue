@@ -4,7 +4,7 @@ import pinkG from '@/assets/pink-girl.jpg'
 import womanImage from '@/assets/portret-girl.jpg'
 </script>
 <template>
-    <section class="px-36 py-24 bg-[#FFFBF2]">
+    <section id="about" class="px-36 py-24 bg-[#FFFBF2]">
       
         <h2 class="text-[70px] pb-6 font-black text-stone-900 mb-12" style="font-family: 'MontserratAlternates-SemiBold', sans-serif;">
           О нас
