@@ -10,14 +10,14 @@ import FooterSection from '@/components/FooterSection.vue'
 </script>
 
 <template>
-  <div class="min-h-screen font-sans" style="background-color: #FFFBF2;">
+  <div class="min-h-screen font-sans overflow-x-hidden" style="background-color: #FFFBF2;">
     <TheNavbar />
     <HeroSection />
     <AboutSection />
     <BestsellersSection />
     <SaleSection/>
-    <ContactsSection />
-    <FooterSection />
+    <!-- <ContactsSection /> -->
+    <!-- <FooterSection /> -->
   </div>
 </template>
 

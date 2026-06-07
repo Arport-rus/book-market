@@ -4,15 +4,15 @@ import pinkG from '@/assets/pink-girl.jpg'
 import womanImage from '@/assets/portret-girl.jpg'
 </script>
 <template>
-    <section id="about" class="px-36 py-24 bg-[#FFFBF2]">
+    <section class="px-8 md:px-16 lg:px-36 py-24 bg-[#FFFBF2]">
       
-        <h2 class="text-[70px] pb-6 font-black text-stone-900 mb-12" style="font-family: 'MontserratAlternates-SemiBold', sans-serif;">
+        <h2 class="text-[40px] lg:text-[70px] pb-6 font-black text-stone-900 mb-12" style="font-family: 'MontserratAlternates-SemiBold', sans-serif;">
           О нас
         </h2>
 
-        <div class="grid grid-cols-[1fr_1fr] gap-16 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 items-start">
           <!-- Left: Text -->
-          <div class="space-y-8 text-[17px] leading-relaxed text-stone-700" style="font-family: 'Montserrat', sans-serif;font-size: 24px;">
+          <div class="space-y-8 leading-relaxed text-stone-700 text-[16px] lg:text-[24px]" style="font-family: 'Montserrat', sans-serif;">
             <p>
               В нашем каталоге представлено более 60 000 товаров от таких издательств, как «Эксмо», «АСТ», «Манн, Иванов и Фербер», а также брендов «БОМБОРА», «Corpus», «Mainstream», «Редакция Елены Шубиной», «Вилли-Винки», «Fanzon», «Комильфо», «Канц-Эксмо» и многих других.
             </p><br>
@@ -41,26 +41,28 @@ import womanImage from '@/assets/portret-girl.jpg'
           </div>
 
           <!-- Right: Images -->
-          <div class="relative h-[720px]">
+          <div class="hidden lg:block relative" style="height: 50vw; max-height: 720px; min-width: 40vw;">
 
-            <!-- Самый большой круг - Книжные полки -->
-            <div class="absolute left-[100px] bottom-[100px] w-[520px] h-[520px] rounded-full overflow-hidden  shadow-2xl z-30">
-              <img :src="bibliot" alt="Книжные полки" class="w-full h-full object-cover ">
-            </div>
+  <!-- Большой круг -->
+  <div class="absolute rounded-full overflow-hidden shadow-2xl z-50"
+    style="width: 32vw; height: 32vw; max-width: 550px; max-height: 550px; left: 2vw; bottom: 5vw;">
+    <img :src="bibliot" alt="Книжные полки" class="w-full h-full object-cover">
+  </div>
 
-            <!-- Средний круг - Девочка с книгой -->
-            <div class="absolute left-[500px] bottom-[450px] w-[419px] h-[419px] rounded-full overflow-hidden  shadow-2xl z-20">
-              <img :src="pinkG" alt="Девочка с книгой" class="w-full h-full object-cover " >
-            </div>
+  <!-- Средний круг -->
+  <div class="absolute rounded-full overflow-hidden shadow-2xl z-20"
+    style="width: 22vw; height: 22vw; max-width: 420px; max-height: 420px; right: -3vw; top: -10vw;">
+    <img :src="pinkG" alt="Девочка с книгой" class="w-full h-full object-cover">
+  </div>
 
-            <!-- Маленький круг - Женщина -->
-            <div class="absolute left-[500px] top-[380px] w-[410px] h-[410px] rounded-full overflow-hidden  shadow-2xl z-10">
-              <img :src="womanImage" alt="Продавец в магазине" class="w-full h-full object-cover">
-            </div>
+  <!-- Маленький круг -->
+  <div class="absolute rounded-full overflow-hidden shadow-2xl z-30"
+    style="width: 20vw; height: 20vw; max-width: 410px; max-height: 410px; right: -2vw; bottom: -7vw;">
+    <img :src="womanImage" alt="Продавец в магазине" class="w-full h-full object-cover">
+  </div>
 
-          </div>
+</div>
         </div>
-      
     </section>
     
 </template>

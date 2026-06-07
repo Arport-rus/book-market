@@ -19,10 +19,8 @@ import { categories } from '@/data/categories'
     </p>
 
     <div class="flex lg:block justify-center">
-  <button
-    class="bg-[#BACCE2] px-8 py-3 text-stone-800 text-base rounded-full hover:bg-stone-800 hover:text-amber-50 transition-all duration-300 tracking-wide active:-translate-y-2 active:scale-[1.02]"
-    style="font-family: 'Montserrat', sans-serif; width: 245px; font-size: 19px; cursor: pointer;"
-  >
+  <button class="bg-[#BACCE2] px-8 py-3 text-stone-800 text-base rounded-full hover:bg-stone-800 hover:text-amber-50 hover:-translate-y-2 hover:scale-[1.02] active:-translate-y-2 active:scale-[1.02] transition-all duration-300 tracking-wide" style="font-family: 'Montserrat', sans-serif; width: 245px; font-size: 19px; cursor: pointer;">
+  
     Каталог
   </button>
 </div>
@@ -49,11 +47,11 @@ import { categories } from '@/data/categories'
 </div>
 
 <!-- Десктоп: корешки книг -->
-<div class="hidden lg:flex flex-1 items-end justify-center gap-12 relative overflow-visible" style="height: 820px;">
+<div class="hidden lg:flex flex-1 items-end justify-center gap-4 xl:gap-12 relative overflow-visible" style="height: 820px;">
   <div
     v-for="(cat, i) in categories"
     :key="i"
-    :class="[cat.color, 'relative flex items-center justify-center cursor-pointer transition-all duration-500 hover:-translate-y-4 rounded-xl group']"
+    :class="[cat.color, 'relative flex items-center justify-center cursor-pointer transition-all duration-500 hover:-translate-y-4 hover:scale-[1.02] rounded-xl group']"
     :style="{
       transform: `rotate(${cat.rotate}deg)`,
       width: cat.width + 'px',
