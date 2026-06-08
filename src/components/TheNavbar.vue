@@ -1,16 +1,25 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const isOpen = ref(false)
 
 const navLinks = [
-  { label: 'О нас',id: 'about' },
-  { label: 'Каталог',id: 'hero' },
-  { label: 'Бестселлеры',id: 'bestsellers' },
-  { label: 'Распродажа', id: 'sale' },
-  { label: 'Контакты', id: 'contacts' },
+  { label: 'О нас',       id: 'about' },
+  { label: 'Каталог',     id: 'catalog' },
+  { label: 'Бестселлеры', id: 'bestsellers' },
+  { label: 'Распродажа',  id: 'sale' },
+  { label: 'Контакты',    id: 'contacts' },
 ]
-const isOpen = ref(false)
+
 function scrollTo(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+  if (id === 'catalog') {
+    router.push('/catalog')
+    isOpen.value = false
+    return
+  }
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   isOpen.value = false
 }
 </script>

@@ -1,12 +1,12 @@
 
 
 <template>
-  <section id="contacts" class="mt-[180px] px-36 pb-36 text-stone-900">
-    <h1 style="font-family: 'MontserratAlternates-SemiBold', sans-serif; font-size: 70px; font-weight: 600;">
+  <section id="contacts" class="mt-[80px] lg:mt-[180px] px-6 md:px-16 lg:px-36 pb-16 lg:pb-36 text-stone-900">
+    <h1 class="text-[40px] lg:text-[70px] text-center lg:text-left" style="font-family: 'MontserratAlternates-SemiBold', sans-serif; font-weight: 600;">
       Контакты
     </h1>
 
-    <div class="grid grid-cols-2 gap-16 mt-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-10 lg:mt-16">
       <!-- Левая часть -->
       <div class="flex flex-col gap-8">
         <p style="font-family: 'Hakim', serif; font-size: 48px; font-weight: 700;">Книжный уголок</p>
@@ -42,9 +42,11 @@
         </div>
 
         <!-- Кнопка рассылка -->
-        <button class="mt-20 px-8 py-4 bg-[#CFDBE7] hover:bg-[#BACCE2] text-stone-800 rounded-3xl transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 24px; width: 570px;">
-          Подписаться на рассылку
-        </button>
+        <div class="flex lg:block justify-center">
+          <button class="mt-4 px-8 py-4 bg-[#CFDBE7] hover:bg-[#BACCE2] text-stone-800 rounded-full transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 16px; width: 260px;">
+             Подписаться на рассылку
+          </button>
+        </div>
       </div>
 
       <!-- Правая часть: форма -->
@@ -73,10 +75,10 @@
           </p>
 
           <div class="flex justify-center">
-            <button class="w-2/5 py-3 bg-[#DED8E6] hover:bg-stone-300 text-stone-800 rounded-full transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">
-            Отправить
+            <button class="py-3 px-12 bg-[#DED8E6] hover:bg-stone-300 text-stone-800 rounded-full transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 18px;">
+              Отправить
             </button>
-</div>
+          </div>
         </div>
       </div>
 
