@@ -1,0 +1,15 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Убийство в Атлантике",
+      "author": "Джон Карр",
+      "price": 1194,
+      "is_new": false,
+      "is_on_sale": false,
+      "age_group": "adults",
+      "cover_type": "hard",
+      "images": ["/images/kill-in-Atlant.png", "/images/kill-in-Atlant.png", "/images/kill-in-Atlant.png"]
+    }
+  ]
+}

@@ -1,13 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
 import CatalogPage from '@/pages/CatalogPage.vue'
+import BookDetailPage from '@/pages/BookDetailPage.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  // Включаем хэш-режим, чтобы VPN не перехватывал локальные переходы
+  history: createWebHashHistory(),
   routes: [
-    { path: '/', component: HomePage },
-    { path: '/catalog', component: CatalogPage },
+    { 
+      path: '/', 
+      component: HomePage 
+    },
+    { 
+      path: '/catalog', 
+      component: CatalogPage 
+    },
+    { 
+      path: '/catalog/:id', 
+      component: BookDetailPage, 
+      props: true 
+    },
   ]
 })
 
 export default router
+

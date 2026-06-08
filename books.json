@@ -1,0 +1,13 @@
+{
+  "books": [
+    { "id": 1, "title": "Убийство в Атлантике", "author": "Джон Карр", "price": 1194, "category": "Художественная литература", "age_group": "adults", "cover_type": "hard", "is_new": false, "is_on_sale": false, "images": ["/images/kill-in-Atlant.png"] },
+    { "id": 2, "title": "Маленький принц", "author": "де Сент-Экзюпери Антуан", "price": 349, "category": "Художественная литература", "age_group": "children", "cover_type": "soft", "is_new": false, "is_on_sale": false, "images": ["/images/small-prince.png"] },
+    { "id": 3, "title": "Эйзен", "author": "Гузель Яхина", "price": 1009, "category": "Художественная литература", "age_group": "adults", "cover_type": "hard", "is_new": true, "is_on_sale": false, "images": ["/images/Eizen.png"] },
+    { "id": 4, "title": "Трудовой кодекс РФ", "author": "Ольга Шевченко", "price": 551, "category": "Учебная литература", "age_group": "adults", "cover_type": "soft", "is_new": false, "is_on_sale": false, "images": ["/images/Work-K.png"] },
+    { "id": 5, "title": "Шесть дней", "author": "Сергей Вересков", "price": 860, "category": "Художественная литература", "age_group": "adults", "cover_type": "hard", "is_new": false, "is_on_sale": true, "images": ["/images/six-day.png"] },
+    { "id": 6, "title": "Легко быть собой", "author": "Женя Донова", "price": 781, "category": "Бизнес-литература", "age_group": "adults", "cover_type": "soft", "is_new": false, "is_on_sale": false, "images": ["/images/easy.png"] },
+    { "id": 7, "title": "Попутчица", "author": "Ольга Савельева", "price": 349, "category": "Художественная литература", "age_group": "adults", "cover_type": "soft", "is_new": false, "is_on_sale": true, "images": ["/images/poput.png"] },
+    { "id": 8, "title": "Стихи о Незнайке", "author": "Николай Носов", "price": 209, "category": "Детские книги", "age_group": "children", "cover_type": "hard", "is_new": false, "is_on_sale": false, "images": ["/images/neznaika.png"] },
+    { "id": 9, "title": "Лидер и племя", "author": "Дэйв Логан", "price": 1471, "category": "Бизнес-литература", "age_group": "adults", "cover_type": "hard", "is_new": true, "is_on_sale": false, "images": ["/images/lider.png"] }
+  ]
+}

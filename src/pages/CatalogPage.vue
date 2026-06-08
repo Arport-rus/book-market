@@ -1,17 +1,21 @@
 <script setup>
 import TheNavbar from '@/components/TheNavbar.vue'
-import { ref } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue' 
+import { useRoute, useRouter } from 'vue-router' 
 import { catalogCategories } from '@/data/catalogCategories.js'
 import { filters } from '@/data/filters.js'
-import { computed } from 'vue'
-import { catalogBooks } from '@/data/catalogBooks.js'
 import BookCard from '@/components/BookCard.vue'
+import ContactsSection from '@/components/ContactsSection.vue'
+import FooterSection from '@/components/FooterSection.vue'
+import axios from 'axios'
 
-const filteredBooks = computed(() =>
-  catalogBooks.filter(book => book.category === activeCategory.value)
-)
+const route = useRoute()
+const router = useRouter()
 
 const activeCategory = ref(catalogCategories[0])
+const catalogBooks = ref([])
+
+// Переменные фильтров из твоей верстки (v-model)
 const selectedStatus = ref([])
 const selectedReader = ref([])
 const selectedCover = ref([])
@@ -19,6 +23,100 @@ const selectedIllustrated = ref([])
 const priceFrom = ref(20)
 const priceTo = ref(200000)
 const isFilterOpen = ref(false)
+
+/**
+ * 1. ФИЛЬТРАЦИЯ НА КЛИЕНТЕ (ТОЛЬКО КАТЕГОРИИ)
+ */
+const filteredBooks = computed(() => {
+  if (!catalogBooks.value) return []
+  return catalogBooks.value.filter(book => {
+    let currentCategory = activeCategory.value
+    if (currentCategory === 'Детская литература') currentCategory = 'Детские книги'
+    if (book.category !== currentCategory) return false
+    return true
+  })
+})
+
+/**
+ * 2. ПОЛНОЦЕННЫЙ ЗАПРОС К БЭКЕНДУ С ФИЛЬТРАМИ
+ */
+async function loadBooks() {
+  try {
+    const params = {}
+
+    // Фильтр по диапазону цен для json-server
+    if (priceFrom.value) params.price_gte = priceFrom.value
+    if (priceTo.value) params.price_lte = priceTo.value
+
+    // Статус товара (Новинка / Со скидкой)
+    if (selectedStatus.value.includes('Новинка')) params.is_new = true
+    if (selectedStatus.value.includes('Со скидкой')) params.is_on_sale = true
+
+    // Читатель: Переводим русские чекбоксы в ключи для базы данных
+    if (selectedReader.value.length > 0) {
+      const ageGroups = []
+      if (selectedReader.value.includes('Для детей')) ageGroups.push('children')
+      if (selectedReader.value.includes('Для взрослых')) ageGroups.push('adults')
+      if (ageGroups.length > 0) params.age_group = ageGroups
+    }
+
+    // Обложка: Переводим русские чекбоксы в ключи для базы данных
+    if (selectedCover.value.length > 0) {
+      const coverTypes = []
+      if (selectedCover.value.includes('Твердый переплет')) coverTypes.push('hard')
+      if (selectedCover.value.includes('Мягкая обложка')) coverTypes.push('soft')
+      if (coverTypes.length > 0) params.cover_type = coverTypes
+    }
+
+    // Иллюстрации
+    if (selectedIllustrated.value.length > 0) {
+      if (selectedIllustrated.value.includes('Да') && !selectedIllustrated.value.includes('Нет')) {
+        params.is_illustrated = true
+      }
+      if (selectedIllustrated.value.includes('Нет') && !selectedIllustrated.value.includes('Да')) {
+        params.is_illustrated = false
+      }
+    }
+
+    console.log('Отправляем запрос на http://localhost:3001/books с параметрами:', params)
+
+    // Делаем запрос и настраиваем правильную склейку массивов для json-server
+    const response = await axios.get('http://localhost:3001/books', { 
+      params,
+      paramsSerializer: {
+        indexes: null // Передает массивы как ?cover_type=hard&cover_type=soft вместо кодов [0], [1]
+      }
+    })
+    
+    catalogBooks.value = response.data
+
+  } catch (error) {
+    console.error('Ошибка загрузки с бэкенда:', error.message)
+  }
+}
+
+// Синхронизация категорий с главной страницы
+const handleIncomingQuery = () => {
+  if (route.query.category) {
+    const found = catalogCategories.find(cat => cat.toLowerCase().includes(route.query.category.toLowerCase().slice(0, 4)))
+    if (found) {
+      activeCategory.value = found
+    }
+  }
+}
+
+onMounted(() => {
+  loadBooks()
+  handleIncomingQuery()
+})
+
+watch(activeCategory, (newCat) => {
+  router.push({ query: { category: newCat } })
+})
+
+watch(() => route.query.category, () => {
+  handleIncomingQuery()
+})
 </script>
 
 <template>
@@ -112,9 +210,13 @@ const isFilterOpen = ref(false)
             </div>
 
             <!-- Кнопка -->
-            <button class="px-6 py-2 bg-[#BACCE2] hover:bg-stone-800 hover:text-amber-50 text-stone-800 rounded-full transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 16px;">
-              Применить
-            </button>
+            <button
+  @click="loadBooks"
+  class="px-6 py-2 bg-[#BACCE2] hover:bg-stone-800 hover:text-amber-50 text-stone-800 rounded-full transition-all duration-300"
+  style="font-family: 'Montserrat', sans-serif; font-size: 16px;"
+>
+  Применить
+</button>
 
           </div>
 
@@ -128,5 +230,7 @@ const isFilterOpen = ref(false)
       </div>
 
     </section>
+    <ContactsSection /> 
+      <FooterSection />
   </div>
 </template>
