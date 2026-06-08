@@ -15,7 +15,7 @@ onUnmounted(() => window.removeEventListener('resize', updateWidth))
 
 const visibleCount = computed(() => {
   if (windowWidth.value < 768) return 1
-  if (windowWidth.value < 1280) return 3
+  if (windowWidth.value < 1380) return 3
   return 4
 })
 

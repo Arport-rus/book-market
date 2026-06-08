@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-// Поля формы
+// Поля формы обратной связи
 const name = ref('')
 const contactInfo = ref('')
 const question = ref('')
@@ -12,36 +12,31 @@ const errors = ref({
   contactInfo: ''
 })
 
-// Показ плашки Apple
-const showToast = ref(false)
+// Состояния показа двух разных плашек Apple
+const showToast = ref(false)          // Для обратной связи
+const showSubscribeToast = ref(false) // Для рассылки
 
 /**
- * Проверка правильности заполнения формы
+ * Проверка правильности заполнения формы обратной связи
  */
 const validateForm = () => {
   let isValid = true
   errors.value = { name: '', contactInfo: '' }
 
-  // 1. Проверяем имя
   if (!name.value.trim()) {
     errors.value.name = 'Введите ваше имя'
     isValid = false
   }
 
-  // 2. Универсальная проверка: Email или Телефон
   const value = contactInfo.value.trim()
   if (!value) {
     errors.value.contactInfo = 'Введите телефон или Email'
     isValid = false
   } else {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    // Регулярка для телефона: ловит форматы +7..., 8..., +7 (...) и т.д.
     const phonePattern = /^(\+7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/
 
-    const isEmail = emailPattern.test(value)
-    const isPhone = phonePattern.test(value)
-
-    if (!isEmail && !isPhone) {
+    if (!emailPattern.test(value) && !phonePattern.test(value)) {
       errors.value.contactInfo = 'Неверный формат телефона или Email'
       isValid = false
     }
@@ -51,29 +46,35 @@ const validateForm = () => {
 }
 
 /**
- * Логика отправки
+ * Логика отправки формы
  */
 const handleSubmit = () => {
   if (validateForm()) {
-    console.log('Данные успешно проверены и отправлены на бэк:', {
-      name: name.value,
-      contact: contactInfo.value,
-      question: question.value
-    })
-
-    // Показываем плашку Apple
     showToast.value = true
-
-    // Сбрасываем поля формы
+    
     name.value = ''
     contactInfo.value = ''
     question.value = ''
 
-    // Через 4 секунды плашка улетит обратно
     setTimeout(() => {
       showToast.value = false
     }, 4000)
   }
+}
+
+/**
+ * Логика подписки на рассылку
+ */
+const handleSubscribe = () => {
+  console.log('Пользователь подписался на рассылку!')
+  
+  // Показываем плашку рассылки
+  showSubscribeToast.value = true
+
+  // Через 4 секунды плашка улетит обратно
+  setTimeout(() => {
+    showSubscribeToast.value = false
+  }, 4000)
 }
 </script>
 
@@ -112,7 +113,11 @@ const handleSubmit = () => {
         </div>
 
         <div class="flex lg:block justify-center">
-          <button class="mt-4 px-8 py-4 bg-[#CFDBE7] hover:bg-[#BACCE2] text-stone-800 rounded-full transition-all duration-300" style="font-family: 'Montserrat', sans-serif; font-size: 16px; width: 260px;">
+          <button 
+            @click="handleSubscribe"
+            class="mt-4 px-8 py-4 bg-[#CFDBE7] hover:bg-[#BACCE2] text-stone-800 rounded-full transition-all duration-300 cursor-pointer" 
+            style="font-family: 'Montserrat', sans-serif; font-size: 16px; width: 260px;"
+          >
              Подписаться на рассылку
           </button>
         </div>
@@ -170,7 +175,6 @@ const handleSubmit = () => {
           </div>
         </div>
       </form>
-
     </div>
 
     <Transition name="apple-toast">
@@ -184,13 +188,34 @@ const handleSubmit = () => {
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        
         <div class="flex flex-col">
           <p class="text-stone-900 font-bold text-base leading-tight">Письмо отправлено</p>
           <p class="text-stone-500 text-sm leading-tight mt-0.5">Мы получили ваше сообщение!</p>
         </div>
-
         <button @click="showToast = false" class="ml-auto text-stone-400 hover:text-stone-700 transition-colors cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </Transition>
+
+    <Transition name="apple-toast">
+      <div 
+        v-if="showSubscribeToast" 
+        class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-6 py-4 bg-white/80 backdrop-blur-md rounded-3xl border border-stone-200/60 shadow-[0_15px_40px_rgba(0,0,0,0.08)] min-w-[320px] sm:min-w-[420px]"
+        style="font-family: 'Montserrat', sans-serif;"
+      >
+        <div class="w-10 h-10 rounded-full bg-[#BACCE2] flex items-center justify-center flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <p class="text-stone-900 font-bold text-base leading-tight">Успешная подписка</p>
+          <p class="text-stone-500 text-sm leading-tight mt-0.5">Вы подписались на рассылку уведомлений</p>
+        </div>
+        <button @click="showSubscribeToast = false" class="ml-auto text-stone-400 hover:text-stone-700 transition-colors cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -201,7 +226,7 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-/* Анимация парения для Apple-плашки */
+/* Анимация плавного парения для обеих Apple-плашек */
 .apple-toast-enter-active {
   transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }

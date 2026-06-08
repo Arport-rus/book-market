@@ -2,7 +2,23 @@
 import bibliot from '@/assets/bibli.jpg'
 import pinkG from '@/assets/pink-girl.jpg'
 import womanImage from '@/assets/portret-girl.jpg'
+
+/**
+ * Умная функция плавного скролла до нужного блока по его ID
+ */
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth', // Мягкая анимация прокрутки
+      block: 'start'      // Прокрутит так, чтобы начало блока совпало с верхом экрана
+    })
+  } else {
+    console.warn(`Элемент с id="${sectionId}" не найден на странице. Проверь id у других секций.`)
+  }
+}
 </script>
+
 <template>
     <section class="px-8 md:px-16 lg:px-36 py-24 bg-[#FFFBF2]">
       
@@ -11,7 +27,6 @@ import womanImage from '@/assets/portret-girl.jpg'
         </h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 items-start">
-          <!-- Left: Text -->
           <div class="space-y-8 leading-relaxed text-stone-700 text-[16px] lg:text-[24px]" style="font-family: 'Montserrat', sans-serif;">
             <p>
               В нашем каталоге представлено более 60 000 товаров от таких издательств, как «Эксмо», «АСТ», «Манн, Иванов и Фербер», а также брендов «БОМБОРА», «Corpus», «Mainstream», «Редакция Елены Шубиной», «Вилли-Винки», «Fanzon», «Комильфо», «Канц-Эксмо» и многих других.
@@ -29,40 +44,43 @@ import womanImage from '@/assets/portret-girl.jpg'
               Вы можете выбрать и заказать товары в любое время суток и оформить доставку удобным для вас способом.
             </p>
 
-            <!-- Buttons -->
             <div class="flex gap-4 pt-10">
-              <button class="px-8 py-3.5 bg-[#FFEBE8] hover:bg-pink-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif;width:245px;font-size:20px;font-weight: 500; ">
+              <button 
+                @click="scrollToSection('contacts')"
+                class="px-8 py-3.5 bg-[#FFEBE8] hover:bg-pink-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300 cursor-pointer" 
+                style="font-family: 'Montserrat', sans-serif; width:245px; font-size:20px; font-weight: 500;"
+              >
                 Контакты
               </button>
-              <button class="px-8 py-3.5 bg-[#BACCE2] hover:bg-blue-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300" style="font-family: 'Montserrat', sans-serif; width: 245px; font-size:20px; font-weight: 500;">
+              
+              <button 
+                @click="scrollToSection('sale')"
+                class="px-8 py-3.5 bg-[#BACCE2] hover:bg-blue-200 text-stone-800 rounded-full text-base font-medium transition-all duration-300 cursor-pointer" 
+                style="font-family: 'Montserrat', sans-serif; width: 245px; font-size:20px; font-weight: 500;"
+              >
                 Распродажа
               </button>
             </div>
           </div>
 
-          <!-- Right: Images -->
           <div class="hidden lg:block relative" style="height: 50vw; max-height: 720px; min-width: 40vw;">
 
-  <!-- Большой круг -->
-  <div class="absolute rounded-full overflow-hidden shadow-2xl z-50"
-    style="width: 32vw; height: 32vw; max-width: 550px; max-height: 550px; left: 2vw; bottom: 5vw;">
-    <img :src="bibliot" alt="Книжные полки" class="w-full h-full object-cover">
-  </div>
+            <div class="absolute rounded-full overflow-hidden shadow-2xl z-50"
+              style="width: 32vw; height: 32vw; max-width: 550px; max-height: 550px; left: 2vw; bottom: 5vw;">
+              <img :src="bibliot" alt="Книжные полки" class="w-full h-full object-cover">
+            </div>
 
-  <!-- Средний круг -->
-  <div class="absolute rounded-full overflow-hidden shadow-2xl z-20"
-    style="width: 22vw; height: 22vw; max-width: 420px; max-height: 420px; right: -3vw; top: -10vw;">
-    <img :src="pinkG" alt="Девочка с книгой" class="w-full h-full object-cover">
-  </div>
+            <div class="absolute rounded-full overflow-hidden shadow-2xl z-20"
+              style="width: 22vw; height: 22vw; max-width: 420px; max-height: 420px; right: -3vw; top: -10vw;">
+              <img :src="pinkG" alt="Девочка с книгой" class="w-full h-full object-cover">
+            </div>
 
-  <!-- Маленький круг -->
-  <div class="absolute rounded-full overflow-hidden shadow-2xl z-30"
-    style="width: 20vw; height: 20vw; max-width: 410px; max-height: 410px; right: -2vw; bottom: -7vw;">
-    <img :src="womanImage" alt="Продавец в магазине" class="w-full h-full object-cover">
-  </div>
+            <div class="absolute rounded-full overflow-hidden shadow-2xl z-30"
+              style="width: 20vw; height: 20vw; max-width: 410px; max-height: 410px; right: -2vw; bottom: -7vw;">
+              <img :src="womanImage" alt="Продавец в магазине" class="w-full h-full object-cover">
+            </div>
 
-</div>
+          </div>
         </div>
     </section>
-    
 </template>
